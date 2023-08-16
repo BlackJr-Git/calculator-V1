@@ -165,6 +165,8 @@ function plusMinus() {
   }
 }
 
+
+
 btnPlusOuMoins.addEventListener("click", plusMinus);
 
 // fonction pourcentage
@@ -181,8 +183,9 @@ console.log(displayed);
 function equals(event) {
   event.preventDefault();
 
-  if (calcul.innerText.includes("janvier")) {
-    calcul.innerText = "Junior";
+  if (calcul.innerText.includes("=")) {
+    calcul.innerText = ''
+    calcul.innerText = input.value;
   } else {
     SecondOperand = input.value;
     calcul.innerText = calcul.innerText + " " + input.value;
