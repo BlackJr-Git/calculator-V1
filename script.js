@@ -26,7 +26,10 @@ function getBtnValue(event) {
 
   switch (event.target.innerText) {
     case "1":
-      displayed = displayed + "1";
+      if(calcul.innerText){
+        calcul.innerText = ''
+        displayed = displayed + "1";
+      }
       break;
     case "2":
       displayed = displayed + "2";
@@ -69,6 +72,11 @@ function getBtnValue(event) {
   }
   input.value = displayed;
 }
+
+input.addEventListener('keydown', function(event) {
+  event.preventDefault();
+})
+
 
 // iterateur qui permet de recuperer la valeur de la touche appuyer
 numpad.forEach((number) => {
@@ -183,24 +191,30 @@ console.log(displayed);
 function equals(event) {
   event.preventDefault();
 
-  if (calcul.innerText.includes("=")) {
-    calcul.innerText = ''
-    calcul.innerText = input.value;
+  if (calcul.innerText.includes("=") || input.value === '' ) {
+    // calcul.innerText = '';
+    // calcul.innerText = input.value;
   } else {
     SecondOperand = input.value;
     calcul.innerText = calcul.innerText + " " + input.value;
     console.log(SecondOperand);
+
     input.value = eval(calcul.innerText);
+    if(input.value === 'Infinity'){
+      input.value = 'Erreur'
+    }
     calcul.innerText = calcul.innerText + " " + "=";
-    // if(operationSign === '+'){
-    //   input.value = parseInt(firstOperand) + parseInt(SecondOperand)
-    // } else if(operationSign === '-') {
-    //   input.value = parseInt(firstOperand) - parseInt(SecondOperand)
-    // } else if(operationSign === '*') {
-    //   input.value = parseInt(firstOperand) * parseInt(SecondOperand)
-    // } else if (operationSign === '/') {
-    //   input.value = parseInt(firstOperand) / parseInt(SecondOperand)
-    // }
+
+
+    //if(operationSign === '+'){
+    //  input.value = parseInt(firstOperand) + parseInt(SecondOperand)
+    //}else if(operationSign === '-') {
+    //  input.value = parseInt(firstOperand) - parseInt(SecondOperand)
+    //}else if(operationSign === '*') {
+    //  input.value = parseInt(firstOperand) * parseInt(SecondOperand)
+    //}else if(operationSign === '/') {
+    //  input.value = parseInt(firstOperand) / parseInt(SecondOperand)
+    //}
   }
 }
 
