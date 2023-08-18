@@ -36,7 +36,14 @@ function getBtnValue(event) {
       break;
 
     case "2":
-      displayed = displayed + "2";
+      if (!calcul.innerText == '') {
+        calcul.innerText = "";
+        displayed = ''
+        displayed = displayed + "2";
+      } else{
+        displayed = displayed + "2";
+      }
+
       break;
     case "3":
       displayed = displayed + "3";
